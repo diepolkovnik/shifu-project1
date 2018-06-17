@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>регистрация</title>
+</head>
+<body>
+<h1>страница регистрации</h1>
+<form method="post" action="{% url 'register' %}">
+    {%  csrf_token %}
+    {% if form.errors %}
+    <p>ошибка в форме</p>
+    {% endif %}
+
+{{ form }}
+    <input type="submit" value="зарегистрироваться"/>
+
+</form>
+</body>
+</html>

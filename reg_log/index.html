@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>the index</title>
+</head>
+<body>
+<h1>это index страница!</h1>
+{% if user.is_authenticated %}
+    <h2>ваше имя такое : {{ user.username }}</h2>
+    {% else %}
+    <h2>вы не вошли </h2>
+{% endif %}
+</body>
+</html>
