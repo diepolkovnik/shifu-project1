@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from reg_log.models import zadanie
+from pr1.models import zadanie
 
 # Create your views here.
 def cyber_forum_view(request):
@@ -19,3 +19,12 @@ def main_page(request):
         'context_value': y,
     }
     return render(request, 'main_page.html', context)
+
+def rabota(request, j):
+    y = zadanie.objects.filter(slug=j).values_list()
+    template = "template.html"
+    context = {
+        'context': y[0][1],
+        'title': y[0][2]
+    }
+    return render(request, template, context)
