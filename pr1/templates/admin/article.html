@@ -1,0 +1,29 @@
+{% extends 'admin/admin.html' %}
+
+{% block content %}
+
+    <div class="text-center">
+        <h2>Ваши статьи</h2>
+        <form action="http://127.0.0.1:8000/admin/articles/add/" method="post">
+            {% csrf_token %}
+
+            <input type="submit" class="btn btn-danger" value=" Добавить статью " name="mybtn">
+            
+        </form>
+        
+
+    {% if context_value %}
+        <ul class="list-group">
+            {% for e in context_value %}
+                <li class="list-group-item">
+                    {{ e.context  }}
+                    {{ e.title }}
+                    {{ e.slug }}
+                    <a class="align-right" href="element/{{ e.slug }}"> Watch </a>>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    </div>
+
+{% endblock %}

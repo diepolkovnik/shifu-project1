@@ -1,0 +1,12 @@
+{% extends 'admin/admin.html' %}
+
+{% block content %}
+
+    <form action="." method="GET">
+    <input class="form-control" placeholder="context" type="text" name="context_value"><br>
+    <input  class="form-control" placeholder="title" type="text" name="title_value"><br>
+    <input class="form-control" placeholder="slug" type="text" name="slug_value"><br>
+    <input type="submit" class="btn btn-info btn-lg" value="Добавить ">
+</form>
+
+{% endblock %}
