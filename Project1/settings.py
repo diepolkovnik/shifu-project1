@@ -137,3 +137,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 TEMPLATES_DIRS = [
     os.path.join(BASE_DIR, "templates")
 ]
+
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = "localhost"
+EMAIL_HOST_USER = "localhost"
+EMAIL_PORT = 587
