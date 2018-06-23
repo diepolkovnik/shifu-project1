@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from pr1.models import zadanie
 
+
 # Create your views here.
 def cyber_forum_view(request):
     f = request.GET.get('context_value', '')
@@ -22,8 +23,12 @@ def add(request):
 
     return render(request, 'admin/add.html')
 def admin(request):
+    if  request.user.is_authenticated:
+        return render(request, 'admin/admin.html')
+    else:
+        return render(request, 'admin/404.html')
 
-    return render(request, 'admin/admin.html' )
+
 
 def article(request):
     y = zadanie.objects.values_list().values()
