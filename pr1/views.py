@@ -39,6 +39,10 @@ def main_page(request):
     }
     return render(request, 'main_page.html', context)
 
+def articles_delete(request, context):
+    obj = zadanie.objects.get(context=context).delete()
+    return redirect('http://127.0.0.1:8000/admin/articles/')
+
 def rabota(request, j):
     y = zadanie.objects.filter(slug=j).values_list()
     template = "template.html"
@@ -94,3 +98,13 @@ def check_from_email(request, user_login):
     user2.is_active = 1
     user2.save()
     return redirect('http://127.0.0.1:8000/accounts/login/')
+
+def articles_edit(request, slug):
+    y = zadanie.objects.filter(slug=slug).values_list()
+    context = {
+        'context': y[0][1],
+        'title': y[0][2],
+        'slug': y[0][3]
+    }
+
+    return render(request, 'admin/edit.html', context)

@@ -14,6 +14,8 @@ urlpatterns = [
     path('', include('pr1.urls')),
     re_path('^element/(?P<j>\w+)/$', rabota),
     re_path('^articles/(?P<j>\w+)/$', rabota),
+    re_path('^admin/articles_del/(?P<context>\w+)/$', articles_delete),
+    re_path('^admin/articles/edit/(?P<slug>\w+)/$', articles_edit),
     path('registration/', login_new_func),
     re_path('^email_conf/(?P<user_login>\w+)/$', check_from_email)
 ]
