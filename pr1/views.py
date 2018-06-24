@@ -13,6 +13,7 @@ def cyber_forum_view(request):
 
     return render(request, 'admin_add.html')
 
+
 def add(request):
     f = request.GET.get('context_value', '')
     f_2 = request.GET.get('title_value', '')
@@ -22,12 +23,13 @@ def add(request):
         i.save()
 
     return render(request, 'admin/add.html')
+
+
 def admin(request):
-    if  request.user.is_authenticated:
+    if request.user.is_authenticated and request.user.is_staff == 1:
         return render(request, 'admin/admin.html')
     else:
         return render(request, 'admin/404.html')
-
 
 
 def article(request):
@@ -36,6 +38,7 @@ def article(request):
         'context_value': y,
     }
     return render(request, 'admin/article.html', context)
+
 
 def main_page(request):
     y = zadanie.objects.values_list().values()

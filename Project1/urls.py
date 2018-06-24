@@ -7,6 +7,7 @@ from pr1.views import *
 
 urlpatterns = [
     path('admin/', admin),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('admin_add/', cyber_forum_view),
     path('admin/articles/add/', add),
     path('admin/articles/', article),

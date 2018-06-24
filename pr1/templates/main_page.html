@@ -14,7 +14,8 @@
         <ul class="list-group">
             {% for e in context_value %}
                 <li class="list-group-item">
-                    <a class="align-right" href="articles/{{ e.slug }}"> {{ e.title }} </a>
+                    <a class="align-right" href="articles/{{ e.slug }}"> <h2>{{ e.title }}</h2></a>
+                    <p>{{ e.context|truncatechars:100 }}</p>
                 </li>
             {% endfor %}
         </ul>
