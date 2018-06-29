@@ -1,6 +1,34 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from pr1.models import zadanie
+from django.contrib.auth.models import Group, User
+from django.contrib.auth import authenticate, login
 
+
+
+def login(request):
+    if request.user.is_authenticated == False:
+        name = request.GET.get('username', '')
+        pasw = request.GET.get('password', '')
+
+        user = authenticate(username=name, password=pasw)
+        if user is not None:
+            group = User.objects.get(username=name).groups.get()
+            if user.is_active and str(group) == 'users_group':
+                login(request, user)
+                return redirect('http://127.0.0.1/')
+            else:
+                return render(request, 'registration/login.html')
+        else:
+            return render(request, 'registration/login.html')
+    else:
+        return redirect('http://127.0.0.1/')
+
+def one(request):
+    # Group.objects.create(name='admin')
+    # Group.objects.create(name='users')
+    group = Group.objects.get(name='admin')
+    User.objects.get(username='diepolkovnik').groups.add(group)
+    return HttpResponse(User.objects.get(username='diepolkovnik').groups.get())
 
 # Create your views here.
 def cyber_forum_view(request):
@@ -25,9 +53,15 @@ def add(request):
     return render(request, 'admin/add.html')
 
 
-def admin(request):
-    if request.user.is_authenticated and request.user.is_staff == 1:
-        return render(request, 'admin/admin.html')
+def admins(request):
+    if request.user.is_authenticated:
+        name = request.user
+        group = User.objects.get(username=name).groups.get()
+
+        if str(group) == 'admin':
+            return render(request, 'admin/admin.html')
+        else:
+            return render(request, 'admin/404.html')
     else:
         return render(request, 'admin/404.html')
 

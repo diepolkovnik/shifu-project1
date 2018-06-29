@@ -5,28 +5,14 @@
     <title>login</title>
 </head>
 <body>
-        {% if form.errors %}
-        <p> что то пошло не так</p>
-        {% endif %}
-
-        {% if next %}
-        <p>нету доступа на эту страницу</p>
-        {% endif %}
-
-        <form method="post" action="{% url 'login' %}">
+        <form method="GET" action="">
             {% csrf_token %}
-
-            <p>Логин: {{ form.username }}</p>
-            <p>Пароль: {{ form.password }}</p>
-            <p>Мыло: {{ form.email }}</p>
-
-            <p><input type="submit" = value="login"></p>
-            <input type="hidden" name="next" value="{{ next }}">
-
-
+            <input class="form-control" placeholder="context" type="text" name="username"><br>
+            <input  class="form-control" placeholder="title" type="text" name="password"><br>
+            <input type="submit"  value="login">
         </form>
 
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+
 
 </body>
 </html>
